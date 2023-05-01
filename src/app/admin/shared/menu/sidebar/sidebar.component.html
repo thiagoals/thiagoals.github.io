@@ -1,0 +1,53 @@
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="index.html" class="site_title"><img src="../../../../../assets/logo-branca.png" width="50"> <span> &nbsp;Illimité bank</span></a>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <ul class="nav side-menu">
+          <li>
+            <a [routerLink]="['']"><i class="fa fa-home"></i>Home</a>
+          </li>
+          
+          <!--Client-->
+          <li>
+            <a [routerLink]="['minhas-aplicacoes/1/15']" *ngIf="isClient()"><i class="fa fa-list-alt"></i>Minhas operações</a>
+          </li>
+          <li>
+            <a [routerLink]="['meus-clientes']" *ngIf="isClient()"><i class="fa fa-user"></i>Meus clientes</a>
+          </li>
+          
+          <!--Admin-->
+          <li>
+            <a [routerLink]="['aplicacoes/1/15']" *ngIf="isAdmin()"><i class="fa fa-list-alt"></i>Operações</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" *ngIf="isAdmin()"><i class="fa fa-list"></i>Clientes</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" *ngIf="isAdmin()"><i class="fa fa-user"></i>Usuários</a>
+          </li>
+
+          <!--Secretary-->
+          <li>
+            <a [routerLink]="['aplicacoes/1/15']" *ngIf="isSecretary()"><i class="fa fa-credit-card"></i>Operações</a>
+          </li>
+          <li>
+            <a [routerLink]="['serasa/1/15']" *ngIf="isSecretary()"><i class="fa fa-list-alt"></i>Serasa</a>
+          </li>
+          <li>
+            <a [routerLink]="['meus-clientes']" *ngIf="isSecretary()"><i class="fa fa-user"></i>Meus clientes</a>
+          </li>
+          <li>
+            <a [routerLink]="['usuarios']" *ngIf="isSecretary()"><i class="fa fa-user"></i>Usuários</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- /sidebar menu -->
+  </div>
+</div>

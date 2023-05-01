@@ -1,0 +1,43 @@
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Adicionar Operação <small>Cadastrar uma operação de um cliente.</small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+            <form id="demo-form2" class="form-horizontal form-label-left" [formGroup]="applianceForm" >
+
+              <div class="item form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="value">Valor da operação<span class="required">*</span></label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="text" id="value" required="required" class="form-control" formControlName="value" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                </div>
+              </div>
+              <div class="item form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="person">Cliente <span class="required">*</span></label> 
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <select class="select2_single form-control" tabindex="-1" formControlName="person">
+                    <option *ngFor="let person of clients" value="{{person.id}}">{{person.name}}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="ln_solid"></div>
+              <div class="item form-group">
+                <div class="col-md-6 col-sm-6 offset-md-3">
+                  <button class="btn btn-success" [disabled]="!applianceForm.valid" (click)="addAppliance()">Adicionar</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

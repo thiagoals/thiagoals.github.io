@@ -1,0 +1,103 @@
+ <!-- page content -->
+ <div class="right_col" role="main">
+   <div class="row">
+     <div class="col-md-12 col-sm-12 col-xs-12">
+       <div class="dashboard_graph">
+          <div class="x_panel" style="border:none;">
+              <h2>Suas operações</h2>
+              <p>Lista de todas as <code>operações</code> dos deus clientes e status de cada um.</p>
+              <br>
+              <button class="btn btn-large btn-primary" (click)="goToAddAppliance()">Adicionar</button>
+
+              <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-6 col-md-6 col-lg-6 float-left">
+                  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-9">
+                    Linhas <select class="select2_single form-control" tabindex="-1" [(ngModel)]="item" (change)="reloadPage(1);">
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
+                      <option value="60">60</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="float:right !important">
+                    <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                      <ul class="pagination" style="margin:0px;margin-top:20px;">
+                        <li class="paginate_button previous" id="datatable_previous">
+                          <a aria-controls="datatable" data-dt-idx="0" tabindex="0" (click)="reloadPage(selectedPage-1);"><</a>
+                        </li>
+                        <li class="paginate_button" [ngClass]="{'active': page.isSelected}" *ngFor="let page of pagination">
+                          <a aria-controls="datatable" data-dt-idx="1" tabindex="0" (click)="reloadPage(page.number);">{{page.number}}</a>
+                        </li>
+                        <li class="paginate_button next" id="datatable_next">
+                          <a aria-controls="datatable" data-dt-idx="7" tabindex="0" (click)="reloadPage(selectedPage+1);">></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+              <thead>
+                <tr class="headings">
+                  <th>
+                    <input type="checkbox" id="check-all" class="flat">
+                  </th>
+                  <th class="column-title">Nome </th>
+                  <th class="column-title">Tipo de pessoa </th>
+                  <th class="column-title">Cpf/Cnpj </th>
+                  <th class="column-title">Data </th>
+                  <th class="column-title">Valor </th>
+                  <th class="column-title">Status </th>
+                  <th class="column-title no-link last"><span class="nobr">Ação</span>
+                  </th>
+                  <th class="bulk-actions" colspan="7">
+                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody *ngIf="isDisplayed()">
+                <tr class="even pointer" *ngFor="let appliance of appliances">
+                  <td class="a-center ">
+                    <input type="checkbox" class="flat" name="table_records">
+                  </td>
+                  <td class=" ">{{appliance.personName}}</td>
+                  <td class=" ">{{getPersonType(appliance.personCpfCnpj)}}</td>
+                  <td class=" ">{{appliance.personCpfCnpj}}</td>
+                  <td class=" ">{{appliance.date | date: "dd-MM-yyyy"}}</td>
+                  <td class=" ">{{appliance.value | currency: 'R$'}}</td>
+                  <td class="a-right a-right"><span [ngStyle]="{'color': getStatusColor(appliance.statusDescription)}">{{appliance.statusDescription}}</span></td>
+                  <td class=" last">
+                    <a [routerLink]="['/admin/documentos/', appliance.applianceId]"><i class="fa fa-list-alt" style="color:green;font-size: 20px;"></i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a [routerLink]="['/admin/minhas-aplicacoes/editar/', appliance.applianceId]"><i class="fa fa-pencil" style="color:grey;font-size: 20px;"></i></a>
+                    <!--&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-remove" style="color:red;font-size: 20px;"></i>-->
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody *ngIf="!isDisplayed()">
+                <tr class="even pointer">
+                  <td colspan="9" style="text-align: center;" (click)="goToAddAppliance()">Não há operações. Clique aqui para adicionar.</td>
+                </tr>
+                <tr>
+                  <td colspan="9" style="text-align: center;">
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+       </div>
+     </div>
+   </div>
+   <br />
+ </div>
+                  
+ <!-- /page content -->

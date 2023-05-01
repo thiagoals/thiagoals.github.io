@@ -1,0 +1,36 @@
+<body class="login">
+  <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form ">
+        <section class="login_content" style="margin-left:20px;margin-right:20px;">
+          <form [formGroup]="userForm">
+            <h1>DocManager</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="E-mail" formControlName="username"/>
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Senha" formControlName="password"/>
+            </div>
+            <div>
+              <button class="btn btn-large submit" href="index.html" [disabled]="!userForm.valid" (click)="login()">Acessar</button>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <p>Todos os direitos reservados</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+  <app-spinner></app-spinner>
+</body>

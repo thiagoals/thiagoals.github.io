@@ -1,0 +1,91 @@
+ <!-- page content -->
+ <div class="right_col" role="main">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="dashboard_graph">
+         <div class="x_panel" style="border:none;">
+             <h2>Seus documentos</h2>
+             <p>Lista de todos os <code>documentos</code> da operação.</p>
+         </div>
+         <div class="table-responsive">
+           <table class="table table-striped jambo_table bulk_action">
+             <thead>
+               <tr class="headings">
+                 <th class="column-title">Tipo de documento </th>
+                 <th class="column-title no-link last"><span class="nobr">Ação</span>
+                 </th>
+                 <th class="bulk-actions" colspan="7">
+                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                 </th>
+               </tr>
+             </thead>
+
+             <tbody>
+               <tr class="even pointer" *ngFor="let document of documents">
+                 <td class=" ">{{document.documentType}}</td>
+                 <td class=" last">
+                  <a (click)="getFile(document.documentId)"><i class="fa fa-download" style="color:grey;font-size: 20px;"></i></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<a (click)="this.toastr.success('Para alterar algum documento, basta adicioná-lo abaixo com o mesmo tipo do documento que deseja alterar.')"><i class="fa fa-pencil" style="color:grey;font-size: 20px;"></i></a>
+                  <!--&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-remove" style="color:red;font-size: 20px;"></i>-->
+                 </td>
+               </tr>
+             </tbody>
+
+             <tbody *ngIf="!isDisplayed()">
+              <tr class="even pointer">
+                <td colspan="3" style="text-align: center;">Não há documentos. Adicione documentos abaixo.</td>
+              </tr>
+            </tbody>
+           </table>
+         </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+</div>
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Adicionar documento <small>Cadastrar documento da operação.</small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+            <form id="demo-form2" class="form-horizontal form-label-left" [formGroup]="documentForm">
+
+              <div class="item form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="value">Documento<span class="required">*</span></label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <input type="file" id="value" required="required" class="form-control" formControlName="file" (change)="handleFileInput($event.target.files)">
+                </div>
+              </div>
+
+              <div class="item form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 col-xs-12" for="person">Tipo de documento <span class="required">*</span></label> 
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                  <select class="select2_single form-control" tabindex="-1" formControlName="documentType">
+                    <option *ngFor="let documentType of documentTypes" value="{{documentType.id}}">{{documentType.type}}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="ln_solid"></div>
+              <div class="item form-group">
+                <div class="col-md-6 col-sm-6 offset-md-3">
+                  <button class="btn btn-success" [disabled]="!documentForm.valid" (click)="addDocument()">Adicionar</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
